@@ -92,11 +92,18 @@ section{padding:min(14vh,140px) clamp(20px,5vw,56px);border-top:1px solid var(--
 .slot .plus-ui .label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;}
 .slot.filled .plus-ui{display:none;}
 .slot-caption{margin-top:10px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;}
+@media (max-width:760px){
+header{flex-direction:column;align-items:flex-start;gap:10px;padding:14px 20px;}
+.brand-mark{font-size:13px;white-space:nowrap;}
+nav{gap:14px;flex-wrap:wrap;}
+nav a{font-size:10px;letter-spacing:0.08em;}
+.visit-clock{display:none;}
+}
 .slot.wide{aspect-ratio:16/10;}
 .prov-row{align-items:center;}
-.prov-portrait{display:flex;flex-direction:column;justify-self:end;width:min(100%,320px);}
-.prov-portrait .slot{aspect-ratio:4/5;}
-@media (max-width:820px){.prov-portrait{justify-self:start;width:min(100%,300px);}.prov-portrait .slot{aspect-ratio:4/5;flex:none;}}
+.prov-portrait{display:flex;flex-direction:column;justify-self:end;width:min(100%,300px);}
+.prov-portrait .slot{aspect-ratio:1509/2576;}
+@media (max-width:820px){.prov-portrait{justify-self:start;width:min(100%,300px);}}
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 @media (max-width:760px){.gallery{grid-template-columns:repeat(2,1fr);}}
@@ -207,12 +214,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
         </div>
       </div>
       <div class="reveal prov-portrait">
-        <div class="slot">
-          <div class="plus-ui">
-            
-            <div class="label mono">Portrait</div>
-          </div>
-        </div>
+        <div class="slot filled"><img src="portrait.jpg" alt="Advait Goel, photo booth portrait" ></div>
         <div class="slot-caption mono"><span>Portrait</span><span>Object 002</span></div>
       </div>
     </div>
@@ -553,7 +555,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   // ---------- clothing archive lock (content is encrypted; password is not in this file) ----------
-  const VAULT={salt:"6jEuzSodoHVxZMis6SB2EA==",iv:"LjApaj3Ui6P888+4",iter:600000,data:"tj8+b6nIe2D8MdBVG45jkh4v+jwJPmOmSX02wRnmP63Le5J5PeSYCf0TNoboiHC0RYPFYCmNv05clBWReZ8QEH15EJwU9PG20oWuG+Q8wvdSy6Y41NRdZ0N4ovulsUql+Gl2PWK5OhpbcVr16uu2m4/q8FtwscaSAxaccpdhY2/NW3RHFmwHbdwTcGHZPLuMAWr3Mv/MiKf2doakQx0BtryyKXaVzNU6Y+bZURRdgesx6n+cxOGLBxl2K0IjO0AwsdLhuYjeQeQjh6djJWbEfLvkUOgRx06WW60nnk3i02dZIOnCrZN3m+DUdKmQacsZAiho9l9mrVWFpaqJZ7qLRjJNHUtZNtxMr5zVrd4xe4oquEM9pMfaNgHUEhmEY5z6Lr5B53/pjozNUkcRzXNvMJduvhlm3fcp7OXQK83ors6jsm9AtHqy1LOKP7fY9tCFrUn88D47r1COkYydSjn1H7BtiKkHm8CUZySfKkPLh1yPftcPzY+x5CWZaxZf3V+nFcPrYtQo7JSaVoBsXn5zR9HqqEXGO2O10p4pCk1gZZ4Zsr9iE6+4gN9A16eWwV3VckFTjhEL0uZmneDYZfr8kkNMtI1HbHssO+AZma1DOe4+5Q4CeJfW/5Ng29uKFCwNQjjPYW6oG+FMA/hNg7TCyycYzVn/qNPEpUt6aC9Riba+PF/KPm3zTOjXh1+SE7pStLT5YS5LV3X80SFWg30eX5jyxJL0Yv+D8e+d+i/B5P8jC3fVJrkf6AYvl2dMbb71rDA7Vhkc5e2MenqNx5RRIN1NLZmfs3psTl7DppB8fJElde+SBRJUUFNOXwEpKrpcXI52PYuE6it5GdIjFhyf7yxq0eV4+K2MP0azKZx0hyRBWud3ebY5fK7zOPFKaI/SjJpawpz0a646NPCF2vDahla0YClxpyDLHlGOHrwI+HL7iMos+o2UICDqzB3zFpQrVlGTWazct5/Eabf/FONKD+yTEIhSQnM3/enpnlL2LeoPW1/gahpywLNMcNOfCivj0nK4akH2umH7UN0H91UxVR7JFK5VVlPZUoT5uVr4hqy5Tf71ara71ezQTzGHJ0+d2pmws02fYYQFL7fYUhIauHgAoXG/i6feeT5UYEwlijcD4olAoveRHXdoWuTj+RyGDX64P9j7MgHqvzk80o1MvuGbH2g8B4fAiLsn/iWQOybLyDwBC2rVfJ9jIi1u56kaDRB7IBAsxPyAnvufBiE5BNPGwPPOQJyuXQ=="};
+  const VAULT={salt:"dUh7yjbKfuU02sdEFFPiRQ==",iv:"tG6kUMiJTz0GgqHq",iter:600000,data:"iehmBcl0ckYCrXZB/nNm7CwoT+pEDF9OE7HrZmqsiy5emnA0j1EOLHlJXL0HT0Rk84s+1TLsNcZloh1RhOAR9cQnhtYU2FNpKIO19wMCobVBsdvp0/9fvurd58fcTPib8wJXwCzQ0B0VzOnsUa7Aoc778h56si3b43EhuZBxXIMe6Hi1mRQs9gUrSPdUG7fyRG6fmZOlQwx5V1fUeNyqTxcP/z8WOwqHSDT/EwWGOH0bxNq3bbbHKnfhjhUANyY/0NuSUha53IO2O/ST3SptV+ob2Qs5kEYkIKSy0ymzueYEFQuftD3w5WT+GmrQAKVjHjo3OcIlKkt1kBJA3R9bi/Y/SBtlzIGlzzXIV0OxSM+RHr5ZxxVZpblRln187m6WhxHc4B8es+sftbv5gsxkN5elWyuhYjqUbkXjoUDc9TX+U7L3eLLqIobybu6Zi1MKpHletN3Ln65mFXIsSRk0qGaj1obC6e6rjFrcNYWxOgt8K95oRwED6tjiV9GGXCkWjiHr2KOy+nespOzpQ0n7hIZHblTLq7qPr0Gr75viEtpDlnnKdxLgcUik4sf+uhqc46841J0eTX52m1zQ7jmW6+bOr5T0c+UjWXLWNnYo66J1KA1Uynu2cyRSSTdXmfnylkiBj8Zfy9l3LriG5FEQb529o4NsW1u/jPAbgzETP/Uld72F/K6FGJV6k6NNrErxbkq5Z2lVyLzcS0mHN7osVLRtYS51WzqjCsMSmyJIHjvpw7pLyDOuM5UlYT6xM1XddiOF5UiY0r4cW/+CNw6crOUXxZslSdbR+Wc1gaM4+hDuU8YwWBjqe31c4+ECJiDVlBLoDn/Z9MJBYDV1Wn2g8491cXMHeXxKf9eUKen4DObxCoYl8257tpDIB/oLG25V8/aYkjz9lB4nkedevw/5/n2FElrxSzJlLRW0oTEt1ZLgbvb0UdIvKFfVQulZGqo5K/xRzJk6Ph2ji1Tlk0bhuo8TWwiL/tAeTu9qVYxaOiGM4SpzO+E4JLKYZN4MAKwxQLs2KCQXzW+PcYr7T3TjLvzUOT3KD41RC8ZwHI3va1NVCc+t2zWSSHtHRfCUL2e66TsXjYbZrb7VbspRxkQTHbrg8aVCYFBliKC2a9av2useGUjjgWMMXYXpdwr30bqDbscDFXOgTdNK7SuTVy3bhnua8bV4X4Nys89D3LVnBM9LUVd3EsWwSZhGppe5lS+t+f5Q8FPN25MLHusPw5pGgktAC9YVE0l0lA=="};
   const unb=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
   async function openVault(pw){
     const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
