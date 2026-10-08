@@ -85,16 +85,18 @@ section{padding:min(14vh,140px) clamp(20px,5vw,56px);border-top:1px solid var(--
 .facts span:first-child{width:100px;flex-shrink:0;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
 .facts span:last-child{color:var(--paper-dim);}
 
-.slot{position:relative;background:var(--ink-2);border:1px solid var(--line);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:border-color .3s ease;}
-.slot:hover{border-color:var(--brass-dim);}
+.slot{position:relative;background:var(--ink-2);border:1px solid var(--line);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .slot img,.slot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .slot .plus-ui{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);z-index:2;text-align:center;padding:16px;}
 .slot .plus-ui .glyph{width:34px;height:34px;border:1px solid var(--line-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--brass-dim);}
 .slot .plus-ui .label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;}
 .slot.filled .plus-ui{display:none;}
-.slot input{display:none;}
 .slot-caption{margin-top:10px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;}
 .slot.wide{aspect-ratio:16/10;}
+.prov-row{align-items:center;}
+.prov-portrait{display:flex;flex-direction:column;justify-self:end;width:min(100%,320px);}
+.prov-portrait .slot{aspect-ratio:4/5;}
+@media (max-width:820px){.prov-portrait{justify-self:start;width:min(100%,300px);}.prov-portrait .slot{aspect-ratio:4/5;flex:none;}}
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 @media (max-width:760px){.gallery{grid-template-columns:repeat(2,1fr);}}
@@ -192,7 +194,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
   <section id="provenance">
     <div class="timecode mono">Wing I · Provenance</div>
     <h2 class="section-title reveal">Where this came from.</h2>
-    <div class="two-col">
+    <div class="two-col prov-row">
       <div class="reveal">
         <div class="interview-quote">
           <div class="iq-label mono">In my own words</div>
@@ -204,13 +206,12 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
           </p>
         </div>
       </div>
-      <div class="reveal" style="width:min(100%,240px);">
+      <div class="reveal prov-portrait">
         <div class="slot">
           <div class="plus-ui">
-            <div class="glyph">+</div>
-            <div class="label mono">Add Portrait</div>
+            
+            <div class="label mono">Portrait</div>
           </div>
-          <input type="file" accept="image/*">
         </div>
         <div class="slot-caption mono"><span>Portrait</span><span>Object 002</span></div>
       </div>
@@ -226,7 +227,6 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
           <div class="glyph">▶</div>
           <div class="label mono">Latest Single Visuals</div>
         </div>
-        <input type="file" accept="image/*,video/*">
       </div>
       <div class="slot-caption mono"><span>Visual</span><span>"City Is Mine"</span></div>
     </div>
@@ -242,7 +242,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       <a data-nav="clothing">Clothing</a>
       <a data-nav="rva">RVA</a>
       <a data-nav="applications">Applications</a>
-      <a href="mailto:you@example.com">Email</a>
+      <a href="mailto:goeladvait06@gmail.com">Email</a>
     </div>
     <div class="footer-bottom mono">
       <span>© 2026 Late to Be Understood Records</span>
@@ -267,9 +267,8 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
         <div class="slot wide">
           <div class="plus-ui">
             <div class="glyph">▶</div>
-            <div class="label mono">Add Video</div>
+            <div class="label mono">Video</div>
           </div>
-          <input type="file" accept="video/*">
         </div>
         <div class="slot-caption mono"><span>Visualizer / Music Video</span><span>"City Is Mine"</span></div>
       </div>
@@ -313,7 +312,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       <a data-nav="clothing">Clothing</a>
       <a data-nav="rva">RVA</a>
       <a data-nav="applications">Applications</a>
-      <a href="mailto:you@example.com">Email</a>
+      <a href="mailto:goeladvait06@gmail.com">Email</a>
     </div>
     <div class="footer-bottom mono">
       <span>© 2026 Late to Be Understood Records</span>
@@ -350,21 +349,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       <div class="lock-error mono" id="lock-error" style="display:none;">Wrong password. Try again.</div>
     </div>
 
-    <div id="clothing-archive" style="display:none;">
-      <div class="gallery" style="margin-top:8px;">
-        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Hoodie</div></div><input type="file" accept="image/*"></div>
-        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Tee</div></div><input type="file" accept="image/*"></div>
-        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Cap</div></div><input type="file" accept="image/*"></div>
-        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Long Sleeve</div></div><input type="file" accept="image/*"></div>
-        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Outerwear</div></div><input type="file" accept="image/*"></div>
-        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Accessories</div></div><input type="file" accept="image/*"></div>
-      </div>
-      <div class="facts">
-        <div><span>Status</span><span>Coming soon</span></div>
-        <div><span>First drop</span><span>TBA</span></div>
-        <div><span>Line</span><span>Late to Be Understood Merch</span></div>
-      </div>
-    </div>
+    <div id="clothing-archive" style="display:none;"></div>
   </section>
 
   <footer>
@@ -377,7 +362,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       <a data-nav="sound">Sound</a>
       <a data-nav="rva">RVA</a>
       <a data-nav="applications">Applications</a>
-      <a href="mailto:you@example.com">Email</a>
+      <a href="mailto:goeladvait06@gmail.com">Email</a>
     </div>
     <div class="footer-bottom mono">
       <span>© 2026 Late to Be Understood Records</span>
@@ -401,10 +386,9 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       <div class="reveal">
         <div class="slot">
           <div class="plus-ui">
-            <div class="glyph">+</div>
-            <div class="label mono">Add Richmond Photo</div>
+            
+            <div class="label mono">Photo</div>
           </div>
-          <input type="file" accept="image/*">
         </div>
         <div class="slot-caption mono"><span>Richmond</span><span>Richmond, VA</span></div>
       </div>
@@ -435,7 +419,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       <a data-nav="sound">Sound</a>
       <a data-nav="clothing">Clothing</a>
       <a data-nav="applications">Applications</a>
-      <a href="mailto:you@example.com">Email</a>
+      <a href="mailto:goeladvait06@gmail.com">Email</a>
     </div>
     <div class="footer-bottom mono">
       <span>© 2026 Late to Be Understood Records</span>
@@ -478,6 +462,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
     <div class="timecode mono">Submit</div>
     <h2 class="section-title reveal">Apply.</h2>
     <form class="open-call-form reveal" id="open-call-form">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
       <div class="field">
         <label for="oc-name">Name</label>
         <input type="text" id="oc-name" name="name" required>
@@ -506,7 +491,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       </div>
       <div class="submit-row">
         <button type="submit" class="submit-btn">Submit application</button>
-        <span class="form-note mono">Opens your email client</span>
+        <span class="form-note mono">Goes straight to the label inbox</span>
       </div>
     </form>
   </section>
@@ -521,7 +506,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
       <a data-nav="sound">Sound</a>
       <a data-nav="clothing">Clothing</a>
       <a data-nav="rva">RVA</a>
-      <a href="mailto:you@example.com">Email</a>
+      <a href="mailto:goeladvait06@gmail.com">Email</a>
     </div>
     <div class="footer-bottom mono">
       <span>© 2026 Late to Be Understood Records</span>
@@ -561,66 +546,59 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
     el.addEventListener('click', ()=> goTo(el.dataset.nav, el.dataset.scroll));
   });
 
-  // ---------- click-to-upload slots ----------
-  document.querySelectorAll('.slot').forEach(slot=>{
-    const input = slot.querySelector('input');
-    if(!input) return;
-    slot.addEventListener('click', ()=> input.click());
-    input.addEventListener('change', e=>{
-      const file = e.target.files[0];
-      if(!file) return;
-      const isVideo = file.type.startsWith('video');
-      const url = URL.createObjectURL(file);
-      let media = slot.querySelector('img,video');
-      if(media) media.remove();
-      media = document.createElement(isVideo ? 'video' : 'img');
-      media.src = url;
-      if(isVideo){ media.controls = true; media.autoplay = false; }
-      slot.prepend(media);
-      slot.classList.add('filled');
-    });
-  });
-
   // ---------- scroll reveal ----------
   const io = new IntersectionObserver(entries=>{
     entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); } });
   }, {threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // ---------- clothing archive lock ----------
-  // Change the password by editing the string below.
-  const CLOTHING_PASSWORD = "cityismine";
-  const lockForm = document.getElementById('lock-form');
+  // ---------- clothing archive lock (content is encrypted; password is not in this file) ----------
+  const VAULT={salt:"6jEuzSodoHVxZMis6SB2EA==",iv:"LjApaj3Ui6P888+4",iter:600000,data:"tj8+b6nIe2D8MdBVG45jkh4v+jwJPmOmSX02wRnmP63Le5J5PeSYCf0TNoboiHC0RYPFYCmNv05clBWReZ8QEH15EJwU9PG20oWuG+Q8wvdSy6Y41NRdZ0N4ovulsUql+Gl2PWK5OhpbcVr16uu2m4/q8FtwscaSAxaccpdhY2/NW3RHFmwHbdwTcGHZPLuMAWr3Mv/MiKf2doakQx0BtryyKXaVzNU6Y+bZURRdgesx6n+cxOGLBxl2K0IjO0AwsdLhuYjeQeQjh6djJWbEfLvkUOgRx06WW60nnk3i02dZIOnCrZN3m+DUdKmQacsZAiho9l9mrVWFpaqJZ7qLRjJNHUtZNtxMr5zVrd4xe4oquEM9pMfaNgHUEhmEY5z6Lr5B53/pjozNUkcRzXNvMJduvhlm3fcp7OXQK83ors6jsm9AtHqy1LOKP7fY9tCFrUn88D47r1COkYydSjn1H7BtiKkHm8CUZySfKkPLh1yPftcPzY+x5CWZaxZf3V+nFcPrYtQo7JSaVoBsXn5zR9HqqEXGO2O10p4pCk1gZZ4Zsr9iE6+4gN9A16eWwV3VckFTjhEL0uZmneDYZfr8kkNMtI1HbHssO+AZma1DOe4+5Q4CeJfW/5Ng29uKFCwNQjjPYW6oG+FMA/hNg7TCyycYzVn/qNPEpUt6aC9Riba+PF/KPm3zTOjXh1+SE7pStLT5YS5LV3X80SFWg30eX5jyxJL0Yv+D8e+d+i/B5P8jC3fVJrkf6AYvl2dMbb71rDA7Vhkc5e2MenqNx5RRIN1NLZmfs3psTl7DppB8fJElde+SBRJUUFNOXwEpKrpcXI52PYuE6it5GdIjFhyf7yxq0eV4+K2MP0azKZx0hyRBWud3ebY5fK7zOPFKaI/SjJpawpz0a646NPCF2vDahla0YClxpyDLHlGOHrwI+HL7iMos+o2UICDqzB3zFpQrVlGTWazct5/Eabf/FONKD+yTEIhSQnM3/enpnlL2LeoPW1/gahpywLNMcNOfCivj0nK4akH2umH7UN0H91UxVR7JFK5VVlPZUoT5uVr4hqy5Tf71ara71ezQTzGHJ0+d2pmws02fYYQFL7fYUhIauHgAoXG/i6feeT5UYEwlijcD4olAoveRHXdoWuTj+RyGDX64P9j7MgHqvzk80o1MvuGbH2g8B4fAiLsn/iWQOybLyDwBC2rVfJ9jIi1u56kaDRB7IBAsxPyAnvufBiE5BNPGwPPOQJyuXQ=="};
+  const unb=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
+  async function openVault(pw){
+    const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+    const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:unb(VAULT.salt),iterations:VAULT.iter,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+    const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:unb(VAULT.iv)},key,unb(VAULT.data));
+    return new TextDecoder().decode(pt);
+  }
+  const lockForm=document.getElementById('lock-form');
   if(lockForm){
-    lockForm.addEventListener('submit', function(e){
+    lockForm.addEventListener('submit',async function(e){
       e.preventDefault();
-      const input = document.getElementById('lock-input');
-      const errorEl = document.getElementById('lock-error');
-      if(input.value === CLOTHING_PASSWORD){
-        document.getElementById('clothing-lock').style.display = 'none';
-        const archive = document.getElementById('clothing-archive');
-        archive.style.display = 'block';
-        archive.querySelectorAll('.reveal').forEach(el=>{
-          io.observe(el);
-          requestAnimationFrame(()=> el.classList.add('in'));
-        });
-      } else {
-        errorEl.style.display = 'block';
-        input.value = '';
-        input.focus();
+      const input=document.getElementById('lock-input');
+      const errorEl=document.getElementById('lock-error');
+      try{
+        const html=await openVault(input.value);
+        document.getElementById('clothing-lock').style.display='none';
+        const archive=document.getElementById('clothing-archive');
+        archive.innerHTML=html; archive.style.display='block';
+        archive.querySelectorAll('.reveal').forEach(el=>{io.observe(el);requestAnimationFrame(()=>el.classList.add('in'));});
+      }catch(err){
+        errorEl.style.display='block'; input.value=''; input.focus();
       }
     });
   }
 
-  // ---------- open call form ----------
-  const openCallForm = document.getElementById('open-call-form');
+  // ---------- application form (sent through Web3Forms to the label inbox) ----------
+  const FORM_ACCESS_KEY="7605b364-d4f9-4b8f-bc59-b5e5b7eb7d37";
+  const openCallForm=document.getElementById('open-call-form');
   if(openCallForm){
-    openCallForm.addEventListener('submit', function(e){
+    const note=openCallForm.querySelector('.form-note');
+    const btn=openCallForm.querySelector('button[type=submit]');
+    openCallForm.addEventListener('submit',async function(e){
       e.preventDefault();
-      const data = new FormData(openCallForm);
-      const subject = encodeURIComponent(`Open Call Submission: ${data.get('category')}`);
-      const body = encodeURIComponent(`Name: ${data.get('name')}\nCategory: ${data.get('category')}\nLink: ${data.get('link')}\n\n${data.get('message')}`);
-      window.location.href = `mailto:you@example.com?subject=${subject}&body=${body}`;
+      const d=new FormData(openCallForm);
+      if(d.get('botcheck')) return;
+      btn.disabled=true; note.textContent='Sending...';
+      try{
+        const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+          body:JSON.stringify({access_key:FORM_ACCESS_KEY,subject:'LTBU Application: '+d.get('category'),from_name:'LTBU Website',
+            name:d.get('name'),email:d.get('email'),category:d.get('category'),link:d.get('link'),message:d.get('message')})});
+        const j=await r.json();
+        if(j.success){openCallForm.reset();note.textContent='Received. Thank you.';}
+        else throw new Error();
+      }catch(err){note.textContent='Could not send. Email '+'goeladvait06@gmail.com'+' directly.';}
+      btn.disabled=false;
     });
   }
 </script>
