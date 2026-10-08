@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Late to Be Understood Records · Advait Goel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c0c0d; --ink-2:#161513; --ink-3:#1e1d1a;
+  --paper:#f3ede1; --paper-dim:#c9c2b2;
+  --brass:#c8a355; --brass-dim:#8a7343; --muted:#8c8577;
+  --rec-red:#d4453a;
+  --line: rgba(243,237,225,0.12); --line-strong: rgba(243,237,225,0.22);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
+::selection{background:var(--brass);color:var(--ink);}
+.mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.04em;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3{font-family:'Noto Serif',serif;font-weight:600;letter-spacing:-0.01em;}
+button{font:inherit;}
+
+header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,56px);z-index:100;mix-blend-mode:difference;}
+.brand-mark{font-family:'Noto Serif',serif;font-weight:600;font-size:15px;letter-spacing:0.06em;cursor:pointer;}
+nav{display:flex;gap:clamp(12px,2.6vw,26px);}
+nav a{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--paper-dim);transition:color .25s ease;padding-bottom:3px;border-bottom:1px solid transparent;cursor:pointer;}
+nav a:hover{color:var(--brass);}
+nav a.active{color:var(--brass);border-color:var(--brass);}
+
+.visit-clock{position:fixed;top:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;font-size:11px;color:var(--paper-dim);z-index:100;mix-blend-mode:difference;}
+.visit-dot{width:7px;height:7px;border-radius:50%;background:var(--rec-red);box-shadow:0 0 7px var(--rec-red);}
+@media (prefers-reduced-motion:no-preference){.visit-dot{animation:blink 1.1s steps(1) infinite;}}
+@keyframes blink{0%,49%{opacity:1;}50%,100%{opacity:.15;}}
+
+.page{display:none;}
+.page.active{display:block;}
+
+.page-hero{min-height:44vh;display:flex;flex-direction:column;justify-content:center;padding:120px clamp(20px,5vw,56px) 48px;}
+.page-hero h1{font-size:clamp(38px,7vw,84px);line-height:0.98;}
+.page-hero .hero-sub{margin-top:22px;max-width:560px;color:var(--paper-dim);font-size:16px;}
+
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(20px,5vw,56px);position:relative;}
+.hero-eyebrow{font-size:11px;color:var(--brass);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:22px;}
+.hero h1{font-size:clamp(40px,7.4vw,96px);line-height:0.98;color:var(--paper);}
+.hero h1 em{font-style:italic;color:transparent;-webkit-text-stroke:1px var(--brass);}
+.hero-name{margin-top:18px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--brass);}
+.hero-sub{margin-top:26px;max-width:560px;font-size:clamp(15px,1.6vw,18px);color:var(--paper-dim);font-weight:300;}
+
+.placard{margin-top:40px;display:inline-flex;flex-direction:column;gap:4px;padding:16px 20px;border:1px solid var(--line-strong);width:fit-content;background:var(--ink-2);}
+.placard .obj-id{font-size:10px;color:var(--brass-dim);text-transform:uppercase;letter-spacing:0.12em;}
+.placard .obj-title{font-family:'Noto Serif',serif;font-weight:600;font-style:italic;font-size:20px;color:var(--paper);}
+.placard .obj-meta{font-size:11px;color:var(--muted);}
+
+.scroll-cue{margin-top:40px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:10px;}
+.scroll-cue .line{width:34px;height:1px;background:var(--muted);}
+
+section{padding:min(14vh,140px) clamp(20px,5vw,56px);border-top:1px solid var(--line);position:relative;}
+.timecode{font-size:11px;color:var(--brass-dim);display:flex;align-items:center;gap:10px;margin-bottom:18px;text-transform:uppercase;letter-spacing:0.1em;}
+.timecode::before{content:'';width:16px;height:1px;background:var(--brass-dim);}
+.section-title{font-size:clamp(28px,4vw,44px);margin-bottom:36px;max-width:720px;}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+.two-col{display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(30px,6vw,90px);align-items:start;}
+.two-col.reverse{grid-template-columns:0.9fr 1.1fr;}
+@media (max-width:820px){.two-col,.two-col.reverse{grid-template-columns:1fr;}}
+.two-col p{color:var(--paper-dim);font-size:16px;max-width:52ch;margin-bottom:16px;}
+.two-col p strong{color:var(--paper);font-weight:500;}
+.two-col .ep-title{font-style:italic;color:var(--paper);}
+
+/* interview / in-his-own-words pull quote */
+.interview-quote{border-left:2px solid var(--brass);padding-left:24px;margin:22px 0 30px;}
+.interview-quote .iq-label{font-size:10px;color:var(--brass-dim);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;}
+.interview-quote p{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(14px,1.5vw,16px);color:var(--paper);line-height:1.7;max-width:60ch;margin-bottom:16px;letter-spacing:0.01em;}
+.interview-quote p:last-child{margin-bottom:0;}
+
+.facts{margin-top:28px;display:flex;flex-direction:column;gap:10px;}
+.facts div{display:flex;gap:14px;font-size:12px;border-top:1px solid var(--line);padding-top:10px;}
+.facts span:first-child{width:100px;flex-shrink:0;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
+.facts span:last-child{color:var(--paper-dim);}
+
+.slot{position:relative;background:var(--ink-2);border:1px solid var(--line);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:border-color .3s ease;}
+.slot:hover{border-color:var(--brass-dim);}
+.slot img,.slot video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.slot .plus-ui{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);z-index:2;text-align:center;padding:16px;}
+.slot .plus-ui .glyph{width:34px;height:34px;border:1px solid var(--line-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--brass-dim);}
+.slot .plus-ui .label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;}
+.slot.filled .plus-ui{display:none;}
+.slot input{display:none;}
+.slot-caption{margin-top:10px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;}
+.slot.wide{aspect-ratio:16/10;}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,1fr);}}
+
+.catalog-list{margin-top:26px;display:flex;flex-direction:column;}
+.catalog-list a{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-top:1px solid var(--line);font-size:13px;color:var(--paper-dim);transition:color .2s ease, padding-left .2s ease;}
+.catalog-list a:last-child{border-bottom:1px solid var(--line);}
+.catalog-list a:hover{color:var(--brass);padding-left:6px;}
+.catalog-list a .cat-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+
+.open-call-form{display:flex;flex-direction:column;gap:22px;max-width:640px;}
+.field{display:flex;flex-direction:column;gap:8px;}
+.field label{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
+.field input, .field select, .field textarea{background:transparent;border:none;border-bottom:1px solid var(--line-strong);color:var(--paper);font-family:'Inter',sans-serif;font-size:15px;font-weight:300;padding:10px 2px;outline:none;transition:border-color .25s ease;width:100%;}
+.field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%238c8577'/></svg>");background-repeat:no-repeat;background-position:right 4px center;}
+.field select option{background:var(--ink-2);color:var(--paper);}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--brass);}
+.field textarea{resize:vertical;min-height:110px;}
+.submit-row{display:flex;align-items:center;gap:18px;margin-top:8px;flex-wrap:wrap;}
+.submit-btn{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;padding:14px 26px;border:1px solid var(--brass);color:var(--brass);background:transparent;cursor:pointer;transition:all .25s ease;}
+.submit-btn:hover{background:var(--brass);color:var(--ink);}
+.form-note{font-size:11px;color:var(--muted);}
+
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:36px 0 8px;}
+@media (max-width:760px){.categories{grid-template-columns:1fr;}}
+.cat-card{border:1px solid var(--line);padding:22px;}
+.cat-card .cat-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--brass-dim);letter-spacing:0.1em;}
+.cat-card h3{font-size:19px;margin:10px 0 8px;}
+.cat-card p{font-size:13px;color:var(--muted);}
+
+/* locked archive panel */
+.lock-panel{
+  max-width:420px;padding:36px 32px;border:1px solid var(--line-strong);background:var(--ink-2);
+  display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+}
+.lock-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--brass-dim);}
+.lock-title{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass);}
+.lock-sub{font-size:14px;color:var(--paper-dim);max-width:320px;}
+.lock-form{display:flex;gap:10px;width:100%;margin-top:6px;flex-wrap:wrap;}
+.lock-form input{
+  flex:1;min-width:140px;background:transparent;border:none;border-bottom:1px solid var(--line-strong);
+  color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 2px;outline:none;
+  transition:border-color .25s ease;
+}
+.lock-form input:focus{border-color:var(--brass);}
+.lock-error{color:var(--rec-red);font-size:11px;}
+
+footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:34px;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;}
+.footer-top h2{font-size:clamp(28px,4.6vw,50px);max-width:540px;}
+.footer-duration{font-size:12px;color:var(--brass-dim);text-align:right;}
+.footer-links{display:flex;gap:26px;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:var(--paper-dim);border-bottom:1px solid transparent;transition:color .25s ease,border-color .25s ease;cursor:pointer;}
+.footer-links a:hover{color:var(--brass);border-color:var(--brass);}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--muted);padding-top:20px;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-mark" data-nav="home">LTBU RECORDS</div>
+  <nav>
+    <a data-nav="home" class="active">Home</a>
+    <a data-nav="home" data-scroll="archive">Archive</a>
+    <a data-nav="sound">Sound</a>
+    <a data-nav="clothing">Clothing</a>
+    <a data-nav="rva">RVA</a>
+    <a data-nav="applications">Applications</a>
+  </nav>
+</header>
+
+<div class="visit-clock">
+  <span class="visit-dot"></span>
+  <span class="mono" id="visit-clock-time">On view 00:00:00</span>
+</div>
+
+<!-- ================= HOME ================= -->
+<div class="page active" data-page="home">
+
+  <section class="hero" style="border-top:none;padding-top:0;">
+    <div class="hero-eyebrow mono">The Mindscape</div>
+    <h1>LATE TO BE<br>UNDERSTOOD <em>RECORDS</em></h1>
+    <div class="hero-name mono">Advait Goel</div>
+    <div class="placard">
+      <span class="obj-id mono">Object 001</span>
+      <span class="obj-title">"City Is Mine"</span>
+      <span class="obj-meta mono">Debut Single · Late to Be Understood Records</span>
+    </div>
+    <div class="scroll-cue mono">
+      <span class="line"></span>
+      <span>Enter the collection</span>
+    </div>
+  </section>
+
+  <section id="provenance">
+    <div class="timecode mono">Wing I · Provenance</div>
+    <h2 class="section-title reveal">Where this came from.</h2>
+    <div class="two-col">
+      <div class="reveal">
+        <div class="interview-quote">
+          <div class="iq-label mono">In my own words</div>
+          <p>
+            "I've been myself since I was born. There was never a moment where fitting in felt
+            like the goal. I've lost count of how many times I got counted out for that exact
+            reason, but I'd rather be real than accepted. That's the whole point of what I'm
+            building."
+          </p>
+        </div>
+      </div>
+      <div class="reveal" style="width:min(100%,240px);">
+        <div class="slot">
+          <div class="plus-ui">
+            <div class="glyph">+</div>
+            <div class="label mono">Add Portrait</div>
+          </div>
+          <input type="file" accept="image/*">
+        </div>
+        <div class="slot-caption mono"><span>Portrait</span><span>Object 002</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="archive">
+    <div class="timecode mono">Wing II · The Archive</div>
+    <h2 class="section-title reveal">The latest single, in frame.</h2>
+    <div class="reveal" style="max-width:640px;">
+      <div class="slot wide">
+        <div class="plus-ui">
+          <div class="glyph">▶</div>
+          <div class="label mono">Latest Single Visuals</div>
+        </div>
+        <input type="file" accept="image/*,video/*">
+      </div>
+      <div class="slot-caption mono"><span>Visual</span><span>"City Is Mine"</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <h2>The collection is always growing.</h2>
+      <div class="footer-duration mono" id="visit-duration-home">Time spent in the archive: 00:00:00</div>
+    </div>
+    <div class="footer-links mono">
+      <a data-nav="sound">Sound</a>
+      <a data-nav="clothing">Clothing</a>
+      <a data-nav="rva">RVA</a>
+      <a data-nav="applications">Applications</a>
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+    <div class="footer-bottom mono">
+      <span>© 2026 Late to Be Understood Records</span>
+      <span>Richmond, VA</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ================= SOUND ================= -->
+<div class="page" data-page="sound">
+
+  <section class="page-hero" style="border-top:none;">
+    <div class="hero-eyebrow mono">Wing III · Sound</div>
+    <h1>The listening room.</h1>
+  </section>
+
+  <section style="border-top:none;">
+    <div class="timecode mono">Object 001</div>
+    <h2 class="section-title reveal">"City Is Mine"</h2>
+    <div class="two-col">
+      <div class="reveal">
+        <div class="slot wide">
+          <div class="plus-ui">
+            <div class="glyph">▶</div>
+            <div class="label mono">Add Video</div>
+          </div>
+          <input type="file" accept="video/*">
+        </div>
+        <div class="slot-caption mono"><span>Visualizer / Music Video</span><span>"City Is Mine"</span></div>
+      </div>
+      <div class="reveal">
+        <div class="interview-quote">
+          <div class="iq-label mono">In my own words</div>
+          <p>
+            "City Is Mine isn't a flex title to me. It's more like, this is mine whether anybody's
+            watching or not. I made it for the version of me that used to sit in the back of the
+            room and just watch everyone else move."
+          </p>
+        </div>
+        <p style="color:var(--paper-dim);font-size:15px;">No release date attached yet. It surfaces here first, before anywhere else.</p>
+        <div class="facts">
+          <div><span>Artist</span><span>Advait Goel</span></div>
+          <div><span>Label</span><span>Late to Be Understood Records</span></div>
+          <div><span>From</span><span>Late to Be Understood (EP)</span></div>
+          <div><span>Status</span><span>In the collection, release date TBA</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="timecode mono">Catalog</div>
+    <h2 class="section-title reveal">Where the rest lives.</h2>
+    <div class="catalog-list reveal">
+      <a href="#"><span>Spotify</span><span class="cat-label">Coming soon</span></a>
+      <a href="#"><span>Apple Music</span><span class="cat-label">Coming soon</span></a>
+      <a href="#"><span>SoundCloud</span><span class="cat-label">Coming soon</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <h2>Back to the collection.</h2>
+      <div class="footer-duration mono" id="visit-duration-sound">Time spent in the archive: 00:00:00</div>
+    </div>
+    <div class="footer-links mono">
+      <a data-nav="home">Home</a>
+      <a data-nav="clothing">Clothing</a>
+      <a data-nav="rva">RVA</a>
+      <a data-nav="applications">Applications</a>
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+    <div class="footer-bottom mono">
+      <span>© 2026 Late to Be Understood Records</span>
+      <span>Richmond, VA</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ================= CLOTHING ================= -->
+<div class="page" data-page="clothing">
+
+  <section class="page-hero" style="border-top:none;">
+    <div class="hero-eyebrow mono">Wing IV · Clothing</div>
+    <h1>The physical archive.</h1>
+  </section>
+
+  <section style="border-top:none;">
+    <div class="timecode mono">Object 004</div>
+    <h2 class="section-title reveal">Sealed for now.</h2>
+
+    <div class="lock-panel reveal" id="clothing-lock">
+      <div class="lock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <rect x="5" y="11" width="14" height="10" rx="1.5"/>
+          <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+      </div>
+      <div class="lock-title mono">Coming Soon</div>
+      <div class="lock-sub">The clothing archive is sealed. Enter the password to open it.</div>
+      <form class="lock-form" id="lock-form">
+        <input type="password" id="lock-input" placeholder="Password" autocomplete="off">
+        <button type="submit" class="submit-btn">Unlock</button>
+      </form>
+      <div class="lock-error mono" id="lock-error" style="display:none;">Wrong password. Try again.</div>
+    </div>
+
+    <div id="clothing-archive" style="display:none;">
+      <div class="gallery" style="margin-top:8px;">
+        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Hoodie</div></div><input type="file" accept="image/*"></div>
+        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Tee</div></div><input type="file" accept="image/*"></div>
+        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Cap</div></div><input type="file" accept="image/*"></div>
+        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Long Sleeve</div></div><input type="file" accept="image/*"></div>
+        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Outerwear</div></div><input type="file" accept="image/*"></div>
+        <div class="slot reveal"><div class="plus-ui"><div class="glyph">+</div><div class="label mono">Accessories</div></div><input type="file" accept="image/*"></div>
+      </div>
+      <div class="facts">
+        <div><span>Status</span><span>Coming soon</span></div>
+        <div><span>First drop</span><span>TBA</span></div>
+        <div><span>Line</span><span>Late to Be Understood Merch</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <h2>Back to the collection.</h2>
+      <div class="footer-duration mono" id="visit-duration-clothing">Time spent in the archive: 00:00:00</div>
+    </div>
+    <div class="footer-links mono">
+      <a data-nav="home">Home</a>
+      <a data-nav="sound">Sound</a>
+      <a data-nav="rva">RVA</a>
+      <a data-nav="applications">Applications</a>
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+    <div class="footer-bottom mono">
+      <span>© 2026 Late to Be Understood Records</span>
+      <span>Richmond, VA</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ================= RVA ================= -->
+<div class="page" data-page="rva">
+
+  <section class="page-hero" style="border-top:none;">
+    <div class="hero-eyebrow mono">Wing V · RVA</div>
+    <h1>Richmond.</h1>
+  </section>
+
+  <section style="border-top:none;">
+    <div class="timecode mono">Object 003</div>
+    <h2 class="section-title reveal">Home base.</h2>
+    <div class="two-col reverse">
+      <div class="reveal">
+        <div class="slot">
+          <div class="plus-ui">
+            <div class="glyph">+</div>
+            <div class="label mono">Add Richmond Photo</div>
+          </div>
+          <input type="file" accept="image/*">
+        </div>
+        <div class="slot-caption mono"><span>Richmond</span><span>Richmond, VA</span></div>
+      </div>
+      <div class="reveal">
+        <div class="interview-quote">
+          <div class="iq-label mono">In my own words</div>
+          <p>
+            "I didn't grow up here. I moved to Richmond and had to actually build something
+            instead of walking into something that already existed. That's not a backdrop to
+            me. It's part of the record."
+          </p>
+        </div>
+        <div class="facts">
+          <div><span>Base</span><span>Richmond, VA</span></div>
+          <div><span>Scene</span><span>RVA independent music</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <h2>Back to the collection.</h2>
+      <div class="footer-duration mono" id="visit-duration-rva">Time spent in the archive: 00:00:00</div>
+    </div>
+    <div class="footer-links mono">
+      <a data-nav="home">Home</a>
+      <a data-nav="sound">Sound</a>
+      <a data-nav="clothing">Clothing</a>
+      <a data-nav="applications">Applications</a>
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+    <div class="footer-bottom mono">
+      <span>© 2026 Late to Be Understood Records</span>
+      <span>Richmond, VA</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ================= APPLICATIONS ================= -->
+<div class="page" data-page="applications">
+
+  <section class="page-hero" style="border-top:none;">
+    <div class="hero-eyebrow mono">Wing VI · The Open Call</div>
+    <h1>Applications.</h1>
+  </section>
+
+  <section style="border-top:none;">
+    <div class="timecode mono">How to be added</div>
+    <h2 class="section-title reveal">Open categories.</h2>
+    <div class="categories">
+      <div class="cat-card reveal">
+        <div class="cat-num mono">01</div>
+        <h3>Artist Submissions</h3>
+        <p>Send a demo or finished record to be considered for the label.</p>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-num mono">02</div>
+        <h3>Collaborations</h3>
+        <p>Producers, videographers, photographers, and stylists working on a piece together.</p>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-num mono">03</div>
+        <h3>Team &amp; Internships</h3>
+        <p>Help run the label side: marketing, visuals, or day-to-day operations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="timecode mono">Submit</div>
+    <h2 class="section-title reveal">Apply.</h2>
+    <form class="open-call-form reveal" id="open-call-form">
+      <div class="field">
+        <label for="oc-name">Name</label>
+        <input type="text" id="oc-name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="oc-email">Email</label>
+        <input type="email" id="oc-email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="oc-category">Category</label>
+        <select id="oc-category" name="category" required>
+          <option value="">Select one</option>
+          <option value="Artist Submission">Artist Submission</option>
+          <option value="Collaboration">Collaboration</option>
+          <option value="Team / Internship">Team / Internship</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="oc-link">Portfolio / Music Link</label>
+        <input type="url" id="oc-link" name="link" placeholder="https://">
+      </div>
+      <div class="field">
+        <label for="oc-message">Message</label>
+        <textarea id="oc-message" name="message" placeholder="Tell us what you're bringing to the collection."></textarea>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="submit-btn">Submit application</button>
+        <span class="form-note mono">Opens your email client</span>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <h2>Back to the collection.</h2>
+      <div class="footer-duration mono" id="visit-duration-applications">Time spent in the archive: 00:00:00</div>
+    </div>
+    <div class="footer-links mono">
+      <a data-nav="home">Home</a>
+      <a data-nav="sound">Sound</a>
+      <a data-nav="clothing">Clothing</a>
+      <a data-nav="rva">RVA</a>
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+    <div class="footer-bottom mono">
+      <span>© 2026 Late to Be Understood Records</span>
+      <span>Richmond, VA</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // ---------- live "time spent in the exhibit" clock ----------
+  const start = Date.now();
+  function pad(n){return n.toString().padStart(2,'0');}
+  function tick(){
+    const s = Math.floor((Date.now()-start)/1000);
+    const str = `${pad(Math.floor(s/3600))}:${pad(Math.floor((s%3600)/60))}:${pad(s%60)}`;
+    document.getElementById('visit-clock-time').textContent = 'On view ' + str;
+    document.querySelectorAll('[id^="visit-duration"]').forEach(el=>{
+      el.textContent = 'Time spent in the archive: ' + str;
+    });
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---------- page navigation ----------
+  function goTo(pageName, scrollTarget){
+    document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active', p.dataset.page === pageName));
+    document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active', a.dataset.nav === pageName && !a.dataset.scroll));
+    window.scrollTo({top:0, behavior:'instant'});
+    if(scrollTarget){
+      requestAnimationFrame(()=>{
+        const el = document.getElementById(scrollTarget);
+        if(el) el.scrollIntoView({behavior:'smooth'});
+      });
+    }
+  }
+  document.querySelectorAll('[data-nav]').forEach(el=>{
+    el.addEventListener('click', ()=> goTo(el.dataset.nav, el.dataset.scroll));
+  });
+
+  // ---------- click-to-upload slots ----------
+  document.querySelectorAll('.slot').forEach(slot=>{
+    const input = slot.querySelector('input');
+    if(!input) return;
+    slot.addEventListener('click', ()=> input.click());
+    input.addEventListener('change', e=>{
+      const file = e.target.files[0];
+      if(!file) return;
+      const isVideo = file.type.startsWith('video');
+      const url = URL.createObjectURL(file);
+      let media = slot.querySelector('img,video');
+      if(media) media.remove();
+      media = document.createElement(isVideo ? 'video' : 'img');
+      media.src = url;
+      if(isVideo){ media.controls = true; media.autoplay = false; }
+      slot.prepend(media);
+      slot.classList.add('filled');
+    });
+  });
+
+  // ---------- scroll reveal ----------
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ---------- clothing archive lock ----------
+  // Change the password by editing the string below.
+  const CLOTHING_PASSWORD = "cityismine";
+  const lockForm = document.getElementById('lock-form');
+  if(lockForm){
+    lockForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const input = document.getElementById('lock-input');
+      const errorEl = document.getElementById('lock-error');
+      if(input.value === CLOTHING_PASSWORD){
+        document.getElementById('clothing-lock').style.display = 'none';
+        const archive = document.getElementById('clothing-archive');
+        archive.style.display = 'block';
+        archive.querySelectorAll('.reveal').forEach(el=>{
+          io.observe(el);
+          requestAnimationFrame(()=> el.classList.add('in'));
+        });
+      } else {
+        errorEl.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    });
+  }
+
+  // ---------- open call form ----------
+  const openCallForm = document.getElementById('open-call-form');
+  if(openCallForm){
+    openCallForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = new FormData(openCallForm);
+      const subject = encodeURIComponent(`Open Call Submission: ${data.get('category')}`);
+      const body = encodeURIComponent(`Name: ${data.get('name')}\nCategory: ${data.get('category')}\nLink: ${data.get('link')}\n\n${data.get('message')}`);
+      window.location.href = `mailto:you@example.com?subject=${subject}&body=${body}`;
+    });
+  }
+</script>
+
+</body>
+</html>
