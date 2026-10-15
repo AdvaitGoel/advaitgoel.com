@@ -102,7 +102,7 @@ nav a{font-size:10px;letter-spacing:0.08em;}
 .slot.wide{aspect-ratio:16/10;}
 .prov-row{align-items:center;}
 .prov-portrait{display:flex;flex-direction:column;justify-self:end;width:min(100%,300px);}
-.prov-portrait .slot{aspect-ratio:1509/2576;}
+.prov-portrait .slot{aspect-ratio:404/512;}
 @media (max-width:820px){.prov-portrait{justify-self:start;width:min(100%,300px);}}
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
@@ -224,11 +224,8 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
     <div class="timecode mono">Wing II · The Archive</div>
     <h2 class="section-title reveal">The latest single, in frame.</h2>
     <div class="reveal" style="max-width:640px;">
-      <div class="slot wide">
-        <div class="plus-ui">
-          <div class="glyph">▶</div>
-          <div class="label mono">Latest Single Visuals</div>
-        </div>
+      <div class="slot filled" style="aspect-ratio:16/9;">
+        <iframe src="https://www.youtube-nocookie.com/embed/Gop5CO2dstc?rel=0&modestbranding=1" title="City Is Mine, official visual" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
       <div class="slot-caption mono"><span>Visual</span><span>"City Is Mine"</span></div>
     </div>
@@ -555,7 +552,7 @@ footer{padding:60px clamp(20px,5vw,56px) 40px;border-top:1px solid var(--line);d
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   // ---------- clothing archive lock (content is encrypted; password is not in this file) ----------
-  const VAULT={salt:"dUh7yjbKfuU02sdEFFPiRQ==",iv:"tG6kUMiJTz0GgqHq",iter:600000,data:"iehmBcl0ckYCrXZB/nNm7CwoT+pEDF9OE7HrZmqsiy5emnA0j1EOLHlJXL0HT0Rk84s+1TLsNcZloh1RhOAR9cQnhtYU2FNpKIO19wMCobVBsdvp0/9fvurd58fcTPib8wJXwCzQ0B0VzOnsUa7Aoc778h56si3b43EhuZBxXIMe6Hi1mRQs9gUrSPdUG7fyRG6fmZOlQwx5V1fUeNyqTxcP/z8WOwqHSDT/EwWGOH0bxNq3bbbHKnfhjhUANyY/0NuSUha53IO2O/ST3SptV+ob2Qs5kEYkIKSy0ymzueYEFQuftD3w5WT+GmrQAKVjHjo3OcIlKkt1kBJA3R9bi/Y/SBtlzIGlzzXIV0OxSM+RHr5ZxxVZpblRln187m6WhxHc4B8es+sftbv5gsxkN5elWyuhYjqUbkXjoUDc9TX+U7L3eLLqIobybu6Zi1MKpHletN3Ln65mFXIsSRk0qGaj1obC6e6rjFrcNYWxOgt8K95oRwED6tjiV9GGXCkWjiHr2KOy+nespOzpQ0n7hIZHblTLq7qPr0Gr75viEtpDlnnKdxLgcUik4sf+uhqc46841J0eTX52m1zQ7jmW6+bOr5T0c+UjWXLWNnYo66J1KA1Uynu2cyRSSTdXmfnylkiBj8Zfy9l3LriG5FEQb529o4NsW1u/jPAbgzETP/Uld72F/K6FGJV6k6NNrErxbkq5Z2lVyLzcS0mHN7osVLRtYS51WzqjCsMSmyJIHjvpw7pLyDOuM5UlYT6xM1XddiOF5UiY0r4cW/+CNw6crOUXxZslSdbR+Wc1gaM4+hDuU8YwWBjqe31c4+ECJiDVlBLoDn/Z9MJBYDV1Wn2g8491cXMHeXxKf9eUKen4DObxCoYl8257tpDIB/oLG25V8/aYkjz9lB4nkedevw/5/n2FElrxSzJlLRW0oTEt1ZLgbvb0UdIvKFfVQulZGqo5K/xRzJk6Ph2ji1Tlk0bhuo8TWwiL/tAeTu9qVYxaOiGM4SpzO+E4JLKYZN4MAKwxQLs2KCQXzW+PcYr7T3TjLvzUOT3KD41RC8ZwHI3va1NVCc+t2zWSSHtHRfCUL2e66TsXjYbZrb7VbspRxkQTHbrg8aVCYFBliKC2a9av2useGUjjgWMMXYXpdwr30bqDbscDFXOgTdNK7SuTVy3bhnua8bV4X4Nys89D3LVnBM9LUVd3EsWwSZhGppe5lS+t+f5Q8FPN25MLHusPw5pGgktAC9YVE0l0lA=="};
+  const VAULT={salt:"zKZI5szc+imAG7hsU2M0iA==",iv:"mKsdy0grm9SCHxQ0",iter:600000,data:"V6Ny68eCXeMqQIfTd7TRYxEKaKhzrSFjUd9KFjUoBr9c46Fcd/8FJVcIC2YMxCUJlMaikQhoBnpt8qbQuNk1/O8UwflP5+qjKqifAyM6ytb8H2pdH2KlmDu11mebJfx4Qs79sRBa4VQfqoMj0Q433LIBlB/0Pj14CJ6ExhTBNF1UFAUg9jABClq47s1E/6TEeuO2MvyBJbZGyfAI9sQ6SYwrfzFNdgomnnbS9VjZ4eO0RzH3mGX6gbyzdxrcamLCGr2VA4KUJycrzdmPSc2OLMJAat29JDTF4JyK329gtOIDCPTEZk9hPdfxQVmLRyIaeJaYMNvhhxuHm5kgvOOhwV4MkOwWVwUPcF96Eke+de2safm+hQN/9AyWQdybpaOsYMPdqMC+3/crsXxKXcCMXv+IHLFRCr+RYKoAyK2jTL58owqH+x0IXrTq1aitHCInJZoCB6ih1X6FExf3buYwdM3x3f08RGXp8XeuYDLo7zqWtmVHIYD+ptcB/eZToVkin7MKBUpKFQRTHBcMytF/5C6E8RHcQ/n/wEJFoEFYYNCZFoYDbT9a418k4JiBgTQXPZ9T5GNJf5lmCwmryMLhMJoOxMhKo/FubVl2mSlzoz3VkYd2HAj4QZCOf7IIMZQqDtMD1dFnpnutIqvi/wED27LlqHgM9Dbv75jjBqVs3XsbuSeabJkfH0NNo5SY4v59TO7taef/uDiYhnQt+JqQNteP7j21o3dq4bSwPYY6n7LjYhh3sEhe1VxJYB1zg89+nFVgU1+Uh7UQoFRm646wRw/eqZwAzwO3Uhc2lvkqM+bzo8+o/FcnXHlU7H+x/dGryCfSnSz1Ab5+TFTvC5nVvB8uO3XgLgp73SgD3CnR8NK1lO1O16ubtL1XTttQF6lRbNoD0Fdn5XcgeSsiluKY/aKEv78Yijsvm/oBotb5ii+/Lyh5D9mwSDaFm/MIA0EVPwpxdv8uNrPUtJJ2UFzx96IVifi78qL8sNG57DteLAFmfLMsxxsZu6S4Sm3anS6+L96rzVvN2HrxBGejCav86AZpEIJJOZNBWMrGDIcj2vFf8wWsqMnQKpcsYyT24hF2AaMZ9EEK+002gDhXwNoTDvQidcMFxIxb8nMOnq552xYLHrHlvNpkZq5VZ/FveM4XSAVugBdWI4GnpLchZj503G6pOX/ZIkGedWS9dPbrelCmK0NEpaodz/1NKLQO8nJY7HMQhTKTxt7KbjtXL5k0HMopMxuEg9oNqw=="};
   const unb=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
   async function openVault(pw){
     const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
